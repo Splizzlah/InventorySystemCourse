@@ -64,7 +64,8 @@ func _reload_items() -> void:
 	var pages := 0
 	
 	for child in _item_grids_container.get_children():
-		_item_grids_container.remove_child(child)
+		#_item_grids_container.remove_child(child)
+		child.queue_free()
 	
 	var grid
 	var amount_items := 0
@@ -93,5 +94,39 @@ func _reload_items() -> void:
 		ui_inventory_item.set_item(item)
 		
 		
+		_current_scroll_page = 1 
+		_amount_scroll_pages = _item_grids_container.get_child_count()
 		
+		if _amount_scroll_pages > 0:
+			_page_size = _item_grids_container.get_size().x / _amount_scroll_pages
+			
+			_scroll_container.set_h_scroll(0)
+
+
+func _on_button_right_pressed() -> void:
+	_go_to_item_page(_current_scroll_page + 1)
+	
+
+
+func _on_button_left_pressed():
+	_go_to_item_page(_current_scroll_page - 1)
+
+
+func _go_to_item_page(go_to_page :int) -> void:
+	go_to_page = int(clamp(go_to_page, 1, _amount_scroll_pages))
+	
+	if go_to_page == _current_scroll_page:
+		return
 		
+	var to := 0.0
+	var is_forward := go_to_page > _current_scroll_page
+	
+	# Forward/Right
+	if is_forward:
+		to = _page_size * (go_to_page - 1)
+	# backward/left
+	else:
+		pass
+		
+	_scroll_container.set_h_scroll(to)
+

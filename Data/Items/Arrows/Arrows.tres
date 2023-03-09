@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EntityItem" load_steps=3 format=3 uid="uid://k5bb6kcl02mp"]
+
+[ext_resource type="Script" path="res://Scripts/EntityItem.gd" id="1_yk8wy"]
+[ext_resource type="Texture2D" uid="uid://dk5pevou0bk6k" path="res://Assets/Sprites/Arrows/HunterBow.png" id="2_15f42"]
+
+[resource]
+resource_name = "Arrow"
+script = ExtResource("1_yk8wy")
+category_type = 1
+name = "Arrow"
+texture_icon = ExtResource("2_15f42")
+attack_power = 0
+defense_value = 0
+price = 15000.0
+special_trait = "Peirce Range Damage12%"
+effect = "Reloads bow"
+description = "Very Unique"

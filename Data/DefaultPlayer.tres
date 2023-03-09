@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EntityPlayer" load_steps=7 format=3 uid="uid://eds7xxcx3gtp"]
+[gd_resource type="Resource" script_class="EntityPlayer" load_steps=12 format=3 uid="uid://eds7xxcx3gtp"]
 
 [ext_resource type="Resource" uid="uid://8u23yyxixm5y" path="res://Data/Items/Armors/Cleric_Armors.tres" id="1_io784"]
 [ext_resource type="Script" path="res://Scripts/EntityPlayer.gd" id="1_xuesc"]
@@ -6,7 +6,12 @@
 [ext_resource type="Resource" uid="uid://cfgwu5nuym6kk" path="res://Data/Items/Weapons/Weapons_ClericWand.tres" id="3_7u2cb"]
 [ext_resource type="Resource" uid="uid://c8rw726g6s4qd" path="res://Data/Items/Potions/potion_poison.tres" id="4_jqwvp"]
 [ext_resource type="Resource" uid="uid://7jc8yy7ce2uj" path="res://Data/Items/Armors/Arial_dress.tres" id="5_78ebx"]
+[ext_resource type="Resource" uid="uid://k5bb6kcl02mp" path="res://Data/Items/Arrows/Arrows.tres" id="5_nnu45"]
+[ext_resource type="Resource" uid="uid://brqrbnfa7kplg" path="res://Data/Items/Boots/Boots.tres" id="7_8hmnp"]
+[ext_resource type="Resource" uid="uid://72yh7iu5fw4l" path="res://Data/Items/Bows/Bow.tres" id="8_4xtdv"]
+[ext_resource type="Resource" uid="uid://dkp5q0um472sk" path="res://Data/Items/Gloves/Gloves.tres" id="9_gi4l6"]
+[ext_resource type="Resource" uid="uid://eybghutq525f" path="res://Data/Items/Shields/Shield.tres" id="10_0wfso"]
 
 [resource]
 script = ExtResource("1_xuesc")
-inventory = Array[Resource]([ExtResource("3_7u2cb"), ExtResource("2_2n1kg"), ExtResource("1_io784"), ExtResource("4_jqwvp"), ExtResource("5_78ebx"), ExtResource("4_jqwvp"), ExtResource("5_78ebx"), ExtResource("5_78ebx"), ExtResource("5_78ebx"), ExtResource("1_io784"), ExtResource("2_2n1kg"), ExtResource("4_jqwvp"), ExtResource("5_78ebx"), ExtResource("4_jqwvp"), ExtResource("2_2n1kg"), ExtResource("5_78ebx"), ExtResource("5_78ebx"), ExtResource("5_78ebx"), ExtResource("2_2n1kg"), ExtResource("2_2n1kg"), ExtResource("4_jqwvp"), ExtResource("4_jqwvp"), ExtResource("2_2n1kg"), ExtResource("2_2n1kg"), ExtResource("1_io784"), ExtResource("1_io784"), ExtResource("3_7u2cb"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+inventory = Array[Resource]([ExtResource("5_78ebx"), ExtResource("5_78ebx"), ExtResource("1_io784"), ExtResource("2_2n1kg"), ExtResource("4_jqwvp"), ExtResource("5_78ebx"), ExtResource("4_jqwvp"), ExtResource("2_2n1kg"), ExtResource("5_78ebx"), ExtResource("5_78ebx"), ExtResource("5_78ebx"), ExtResource("2_2n1kg"), ExtResource("2_2n1kg"), ExtResource("4_jqwvp"), ExtResource("4_jqwvp"), ExtResource("2_2n1kg"), ExtResource("5_nnu45"), ExtResource("1_io784"), ExtResource("1_io784"), ExtResource("3_7u2cb"), ExtResource("5_nnu45"), ExtResource("7_8hmnp"), ExtResource("8_4xtdv"), ExtResource("9_gi4l6"), ExtResource("2_2n1kg"), ExtResource("4_jqwvp"), ExtResource("10_0wfso"), ExtResource("3_7u2cb"), null, null])

@@ -245,3 +245,6 @@ offset_top = -60.0
 offset_right = 240.0
 offset_bottom = 60.0
 grow_horizontal = 1
+
+[connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn/ButtonLeft" to="." method="_on_button_left_pressed"]
+[connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlRightColumn/ButtonRight" to="." method="_on_button_right_pressed"]

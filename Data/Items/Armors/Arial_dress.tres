@@ -7,7 +7,7 @@
 resource_name = "Cleric"
 script = ExtResource("1_myffl")
 category_type = 0
-name = "Cleric"
+name = "Arial"
 texture_icon = ExtResource("2_vvnx7")
 attack_power = 0
 defense_value = 0
