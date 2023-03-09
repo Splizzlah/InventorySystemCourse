@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EntityItemCategoryDisplay" load_steps=3 format=3 uid="uid://bqucby1nutwv7"]
 
 [ext_resource type="Script" path="res://Scripts/EntityItemCatagory.gd" id="1_vp16u"]
-[ext_resource type="Texture2D" uid="uid://bcjcbcmqrv88t" path="res://Assets/UI/Icons/ItemCategories/Armors.png" id="2_hqfvc"]
+[ext_resource type="Texture2D" uid="uid://b0g7b8aox2seh" path="res://Assets/UI/Icons/ItemCategories/Gloves.png" id="2_c7pro"]
 
 [resource]
 resource_name = "Gloves"
 script = ExtResource("1_vp16u")
 types = Array[int]([4])
 display_name = "Gloves"
-texture_icon = ExtResource("2_hqfvc")
+texture_icon = ExtResource("2_c7pro")
