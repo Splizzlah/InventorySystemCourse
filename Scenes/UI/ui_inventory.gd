@@ -60,48 +60,51 @@ func _reload() -> void:
 	_reload_items()
 
 func _reload_items() -> void:
-
 	var pages := 0
-	
+	var inventory_by_category := GameState.player_data.get_inventory_by_category()
 	for child in _item_grids_container.get_children():
 		_item_grids_container.remove_child(child)
 		#child.queue_free()
-	
-	var grid
-	var amount_items := 0
-	
+
 	for category_display in GameState.item_category_displays:
 		var starting_page := pages
 		var category_display_amount_items := 0
 		
 		if GameState.count_inventory_items_from_category_display(category_display) > 0:
-			pass
-	
-	
-	
-	for item in GameState.player_data.inventory:
-		if not item:
-			continue
-		
-		amount_items += 1
-		
-		var is_page_full := ((amount_items - 1) % ItemsPerGrid) == 0
-		
-		if not grid or (grid and is_page_full):
-			grid = _grid_template.instantiate()
+			var category_types = category_display.types
 			
-			for child in grid.get_children():
-				child.queue_free()
-				
-			_item_grids_container.add_child(grid)
+			var grid
+			
+			for category in category_types:
+				for item in GameState.get_inventory_items_from_category(category):
+					if not item:
+						continue
+					
+					category_display_amount_items += 1
+					
+					var is_page_full := ((category_display_amount_items - 1) % ItemsPerGrid) == 0
+					
+					if not grid or (grid and is_page_full):
+						pages += 1
+						grid = _grid_template.instantiate()
+						grid.set_name(category_display.display_name)
+						
+						
+						for child in grid.get_children():
+							child.queue_free()
+							
+						_item_grids_container.add_child(grid)
 
-		var ui_grid_item = _ui_inventory_grid_item.instantiate()
-		ui_grid_item.set_name(item.resource_name)
-		grid.add_child(ui_grid_item)
-		
-		var ui_inventory_item = ui_grid_item.get_ui_inventory_item()
-		ui_inventory_item.set_item(item)
-		
+					var ui_grid_item = _ui_inventory_grid_item.instantiate()
+					ui_grid_item.set_name(item.resource_name)
+					grid.add_child(ui_grid_item)
+					
+					var ui_inventory_item = ui_grid_item.get_ui_inventory_item()
+					ui_inventory_item.set_item(item)
+					
+
+
+
 		
 	_current_scroll_page = 1 
 	_amount_scroll_pages = _item_grids_container.get_child_count()

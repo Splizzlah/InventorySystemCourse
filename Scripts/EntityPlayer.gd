@@ -35,6 +35,8 @@ func index_inventory() -> void:       # This is the setter
 				inventory_by_category[item.category_type] = [item]
 				
 func get_inventory_by_category() -> Dictionary:    #  The Getter
-#	if not inventory_by_category:
-#		index_inventory(inventory_by_category)
+	if inventory_by_category:
+		return inventory_by_category
+	else:
+		index_inventory()
 	return inventory_by_category
