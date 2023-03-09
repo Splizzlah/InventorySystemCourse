@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EntityItemCategoryDisplay" load_steps=3 format=3 uid="uid://8s54ma6aesiv"]
+[gd_resource type="Resource" script_class="EntityItemCatagoryDisplay" load_steps=3 format=3 uid="uid://8s54ma6aesiv"]
 
 [ext_resource type="Script" path="res://Scripts/EntityItemCatagory.gd" id="1_2itjg"]
 [ext_resource type="Texture2D" uid="uid://ciesb46e0e214" path="res://Assets/UI/Icons/ItemCategories/Weapons.png" id="2_b74kw"]

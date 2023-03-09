@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://v46htlia32aa"]
+[gd_scene load_steps=10 format=3 uid="uid://v46htlia32aa"]
 
 [ext_resource type="Theme" uid="uid://vmfiqeamd8ib" path="res://SavedThemes/newtheme.tres" id="1_8ihc8"]
 [ext_resource type="PackedScene" uid="uid://vf6ay4071ty1" path="res://Scenes/UI/UI_Elements/ui_frame.tscn" id="1_ojyjb"]
-[ext_resource type="Script" path="res://Scenes/UI/ui_item_info.gd" id="2_2x5cr"]
 [ext_resource type="FontFile" uid="uid://b0w2wk3o6fqjl" path="res://SavedFonts/BoldItalicRoboto.tres" id="2_wlyvx"]
 [ext_resource type="FontFile" uid="uid://bci3rn67bghha" path="res://SavedFonts/LightRoboto.tres" id="3_enri4"]
 [ext_resource type="PackedScene" uid="uid://4gyomutmihks" path="res://Scenes/UI/UI_Elements/h_box_stats_icon.tscn" id="5_ylmsb"]
@@ -19,7 +18,6 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 grow_vertical = 0
 theme = ExtResource("1_8ihc8")
-script = ExtResource("2_2x5cr")
 
 [node name="UIFrame" parent="." instance=ExtResource("1_ojyjb")]
 custom_minimum_size = Vector2(1600, 160)
@@ -78,10 +76,10 @@ theme_override_constants/separation = 15
 [node name="HBoxAttack" parent="VBoxContainer/HBoxMainStats" instance=ExtResource("5_ylmsb")]
 layout_mode = 2
 
-[node name="HBoxDefense" parent="VBoxContainer/HBoxMainStats" instance=ExtResource("5_ylmsb")]
+[node name="HBoxDefence" parent="VBoxContainer/HBoxMainStats" instance=ExtResource("5_ylmsb")]
 layout_mode = 2
 
-[node name="Icon" parent="VBoxContainer/HBoxMainStats/HBoxDefense" index="0"]
+[node name="Icon" parent="VBoxContainer/HBoxMainStats/HBoxDefence" index="0"]
 texture = ExtResource("6_78d7m")
 
 [node name="HBoxPrice" parent="VBoxContainer/HBoxMainStats" instance=ExtResource("5_ylmsb")]
@@ -115,13 +113,13 @@ texture = ExtResource("9_w4gi3")
 text = "3450 Poison Damage
 "
 
-[node name="LabelDescription" type="RichTextLabel" parent="VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[i]This is some description just one line [/i]"
 fit_content = true
 
-[editable path="VBoxContainer/HBoxMainStats/HBoxDefense"]
+[editable path="VBoxContainer/HBoxMainStats/HBoxDefence"]
 [editable path="VBoxContainer/HBoxMainStats/HBoxPrice"]
 [editable path="VBoxContainer/HBoxSpecialStats/HBoxSpecial"]
 [editable path="VBoxContainer/HBoxSpecialStats/HBoxEffect"]
