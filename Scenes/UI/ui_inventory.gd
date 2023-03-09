@@ -101,6 +101,7 @@ func _reload_items() -> void:
 		_page_size = _item_grids_container.get_size().x / _amount_scroll_pages
 			
 	_scroll_container.set_h_scroll(0)
+	_update_navigation()
 
 
 func _on_button_right_pressed() -> void:
@@ -131,6 +132,8 @@ func _go_to_item_page(go_to_page :int) -> void:
 	_scroll_container.set_h_scroll(to)
 	_current_scroll_page = go_to_page
 	_update_navigation()
+	
+	
 func _update_navigation() -> void:
 	if _current_scroll_page == 1:
 		_button_left.set_visible(false)
