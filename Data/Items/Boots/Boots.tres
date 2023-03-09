@@ -6,7 +6,7 @@
 [resource]
 resource_name = "Boots"
 script = ExtResource("1_77heo")
-category_type = 2
+category_type = 4
 name = "Boots"
 texture_icon = ExtResource("2_ps1bx")
 attack_power = 0
