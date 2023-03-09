@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EntityItemCategoryDisplay" load_steps=3 format=3 uid="uid://0ish6n678fjh"]
 
 [ext_resource type="Script" path="res://Scripts/EntityItemCatagory.gd" id="1_1mh86"]
-[ext_resource type="Texture2D" uid="uid://bcjcbcmqrv88t" path="res://Assets/UI/Icons/ItemCategories/Armors.png" id="2_je7s6"]
+[ext_resource type="Texture2D" uid="uid://mwxaeipuq8s8" path="res://Assets/UI/Icons/ItemCategories/Shields.png" id="2_66y5c"]
 
 [resource]
 resource_name = "Shield"
 script = ExtResource("1_1mh86")
 types = Array[int]([6])
 display_name = "Shield"
-texture_icon = ExtResource("2_je7s6")
+texture_icon = ExtResource("2_66y5c")

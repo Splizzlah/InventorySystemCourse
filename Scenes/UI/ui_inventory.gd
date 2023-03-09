@@ -58,7 +58,28 @@ func _ready():
 	
 func _reload() -> void:
 	_reload_items()
-
+	
+	
+func _reload_categories() -> void:
+	for child in _grid_categories.get_children():
+		_grid_categories.remove_child(child)
+		
+	for category_display in GameState.item_category_displays:
+		var ui = _ui_inventory_category.instantiate()
+		ui.set_name(category_display.display_name)
+		_grid_categories.add_child(ui)
+		
+		if GameState.count_inventory_items_from_category_display(category_display) > 0:
+			var button = ui.get_button()
+			button.connect( "pressed",Callable(self, "on_button_category_pressed").bind(
+				_category_displays_to_pages.get(category_display)
+			))
+			
+		
+		ui.set_category(category_display)
+		_category_displays_to_ui[category_display] = ui
+		
+		
 func _reload_items() -> void:
 	var pages := 0
 	var inventory_by_category := GameState.player_data.get_inventory_by_category()
@@ -101,12 +122,22 @@ func _reload_items() -> void:
 					
 					var ui_inventory_item = ui_grid_item.get_ui_inventory_item()
 					ui_inventory_item.set_item(item)
-					
-
-
-
+			
+			_category_displays_to_pages[category_display] = starting_page + 1
+			#assign all pgaages number to this display ( this is ncessary,
+			#because a single category display may have multiple pages of items
+			var pages_to_assign = pages - starting_page
+			
+			while pages_to_assign > 0:
+				_pages_to_category_displays[pages_to_assign + starting_page] = category_display
+				pages_to_assign -= 1
+		#HACK this is needed but doesnt work so the container can have its size updated after
+		# the children grids were added dynamically
+	_item_grids_container.set_visible(false)
+	await get_tree().create_timer(0.0001).timeout
+	_item_grids_container.set_visible(true)
 		
-	_current_scroll_page = 1 
+	_current_scroll_page = 1
 	_amount_scroll_pages = _item_grids_container.get_child_count()
 		
 	if _amount_scroll_pages > 0:
@@ -114,18 +145,16 @@ func _reload_items() -> void:
 			
 	_scroll_container.set_h_scroll(0)
 	_update_navigation()
+	
+	_reload_categories()
 
 
 func _on_button_Right_pressed() -> void:
 	_go_to_item_page(_current_scroll_page + 1)
-	
-	
 
 
 func _on_button_Left_pressed():
 	_go_to_item_page(_current_scroll_page - 1)
-	
-
 
 func _go_to_item_page(go_to_page :int) -> void:
 	if _is_scrolling:
@@ -182,3 +211,6 @@ func _update_navigation() -> void:
 func _on_animation_player_animation_finished(anim_name):
 	_current_scroll_page = _scrolling_to_page
 	_update_navigation()
+
+func on_button_category_pressed(go_to_page : int) -> void:
+	_go_to_item_page(go_to_page)

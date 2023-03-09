@@ -12,8 +12,6 @@
 
 [sub_resource type="Animation" id="Animation_yfwjg"]
 resource_name = "ScrollItems"
-length = 0.1
-step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -21,10 +19,10 @@ tracks/0/path = NodePath("ScrollContainerItemGrids:scroll_horizontal")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [0, 400]
+"values": [0, 606]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yfry5"]
