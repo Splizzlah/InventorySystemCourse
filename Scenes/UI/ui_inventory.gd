@@ -69,7 +69,17 @@ func _reload_categories() -> void:
 		ui.set_name(category_display.display_name)
 		_grid_categories.add_child(ui)
 		
+		if GameState.count_inventory_items_from_category_display(category_display) > 0:
+			var button = ui.get_button()
+			button.connect( "pressed",Callable(self, "on_button_category_pressed").bind(
+				_category_displays_to_pages.get(category_display)
+			))
+			
+		
 		ui.set_category(category_display)
+		_category_displays_to_ui[category_display] = ui
+		
+		
 func _reload_items() -> void:
 	var pages := 0
 	var inventory_by_category := GameState.player_data.get_inventory_by_category()
@@ -112,9 +122,17 @@ func _reload_items() -> void:
 					
 					var ui_inventory_item = ui_grid_item.get_ui_inventory_item()
 					ui_inventory_item.set_item(item)
-					
-
-
+			
+			_category_displays_to_pages[category_display] = starting_page + 1
+			#assign all pgaages number to this display ( this is ncessary,
+			#because a single category display may have multiple pages of items
+			var pages_to_assign = pages - starting_page
+			
+			while pages_to_assign > 0:
+				_pages_to_category_displays[pages_to_assign + starting_page] = category_display
+				pages_to_assign -= 1
+		#HACK this is needed but doesnt work so the container can havbe its size updated after
+		# the children grids were added dynamically
 	_item_grids_container.set_visible(false)
 	await get_tree().create_timer(0.0001).timeout
 	_item_grids_container.set_visible(true)
@@ -193,3 +211,6 @@ func _update_navigation() -> void:
 func _on_animation_player_animation_finished(anim_name):
 	_current_scroll_page = _scrolling_to_page
 	_update_navigation()
+
+func on_button_category_pressed(go_to_page : int) -> void:
+	_go_to_item_page(go_to_page)
