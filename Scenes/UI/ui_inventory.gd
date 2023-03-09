@@ -70,6 +70,15 @@ func _reload_items() -> void:
 	var grid
 	var amount_items := 0
 	
+	for category_display in GameState.item_category_displays:
+		var starting_page := pages
+		var category_display_amount_items := 0
+		
+		if GameState.count_inventory_items_from_category_display(category_display) > 0:
+			pass
+	
+	
+	
 	for item in GameState.player_data.inventory:
 		if not item:
 			continue
