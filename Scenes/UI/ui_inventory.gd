@@ -29,10 +29,10 @@ var _scrolling_to_page := 1
 
 var _ui_inventory_category := preload("res://Scenes/UI/UI_Elements/ui_inventory_category.tscn")
 
-var _category_displays_to_pages := {} 
-var _category_displays_to_ui := {}
-var _pages_to_category_displays := {}
-var _current_active_ui_inventory_category : Control
+#var _category_displays_to_pages := {} 
+#var _category_displays_to_ui := {}
+#var _pages_to_category_displays := {}
+#var _current_active_ui_inventory_category : Control
 
 #
 # Item members
@@ -43,12 +43,12 @@ var _current_active_ui_inventory_category : Control
 
 @onready var _button_left := $HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn/ButtonLeft
 @onready var _button_right := $HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlRightColumn/ButtonRight
-@onready var _ui_item_info := $HBoxMain/ControlInfoColumn/UIItemInfo
+#@onready var _ui_item_info := $HBoxMain/ControlInfoColumn/UIItemInfo
 #@onready var _context_menu_container := $UIContextMenuContainer
-@onready var _context_menu := $UIContextMenuContainer/UIInventoryItemContextMenu
+#@onready var _context_menu := $UIContextMenuContainer/UIInventoryItemContextMenu
 
 # To keep track of item highlights with mouse hover
-var _current_ui_inventory_item_selected : Node
+#var _current_ui_inventory_item_selected : Node
 
 
 func _ready():
@@ -61,13 +61,13 @@ func _reload() -> void:
 
 func _reload_items() -> void:
 	var pages := 0
-	var inventory_by_category := GameState.player_data.get_inventory_by_category()
+	
 	for child in _item_grids_container.get_children():
 		_item_grids_container.remove_child(child)
 		#child.queue_free()
 
 	for category_display in GameState.item_category_displays:
-		var starting_page := pages
+		var _starting_page := pages
 		var category_display_amount_items := 0
 		
 		if GameState.count_inventory_items_from_category_display(category_display) > 0:
@@ -104,7 +104,9 @@ func _reload_items() -> void:
 					
 
 
-
+	_item_grids_container.set_visible(false)
+	await get_tree().create_timer(0.0001).timeout
+	_item_grids_container.set_visible(true)
 		
 	_current_scroll_page = 1 
 	_amount_scroll_pages = _item_grids_container.get_child_count()
@@ -179,6 +181,6 @@ func _update_navigation() -> void:
 	#_set_active_category_display()
 
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	_current_scroll_page = _scrolling_to_page
 	_update_navigation()
