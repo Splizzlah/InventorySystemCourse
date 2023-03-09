@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EntityItem" load_steps=3 format=3 uid="uid://8u23yyxixm5y"]
+
+[ext_resource type="Script" path="res://Scripts/EntityItem.gd" id="1_1me0u"]
+[ext_resource type="Texture2D" uid="uid://pqen5ymmjfa1" path="res://Assets/Sprites/Armors/Cleric.png" id="2_omqgv"]
+
+[resource]
+resource_name = "Cleric Armor set"
+script = ExtResource("1_1me0u")
+category_type = 0
+name = "Cleric Armor"
+texture_icon = ExtResource("2_omqgv")
+attack_power = 0
+defence_value = 45
+price = 15000.0
+special_trait = "Healing 18%"
+effect = "Healing Buff"
+description = "Cleric Set Very Rare"

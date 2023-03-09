@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://4gyomutmihks"]
+
+[ext_resource type="Texture2D" uid="uid://b472n2jm4bq58" path="res://Assets/UI/Icons/sword.png" id="1_d8mw6"]
+[ext_resource type="Script" path="res://Scenes/UI/UI_Elements/h_box_stats_icon.gd" id="1_tas76"]
+[ext_resource type="FontFile" uid="uid://b0w2wk3o6fqjl" path="res://SavedFonts/BoldItalicRoboto.tres" id="2_aofrh"]
+
+[node name="HBox_Stat_Icons" type="HBoxContainer"]
+theme_override_constants/separation = 3
+script = ExtResource("1_tas76")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_d8mw6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LabelValue" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_aofrh")
+text = "1250
+"

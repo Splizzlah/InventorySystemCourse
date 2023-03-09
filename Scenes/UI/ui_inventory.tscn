@@ -1,0 +1,279 @@
+[gd_scene load_steps=13 format=3 uid="uid://co37x8bpy2gop"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ui_inventory.gd" id="1_n3wys"]
+[ext_resource type="FontFile" uid="uid://bci3rn67bghha" path="res://SavedFonts/LightRoboto.tres" id="1_qbwyn"]
+[ext_resource type="PackedScene" uid="uid://bf6ajbj26akkh" path="res://Scenes/UI/UI_Elements/ui_inventory_category.tscn" id="2_622c8"]
+[ext_resource type="Texture2D" uid="uid://c0jnp77322ktq" path="res://Assets/UI/Icons/ArrowRight.png" id="3_yleul"]
+[ext_resource type="Theme" uid="uid://vmfiqeamd8ib" path="res://SavedThemes/newtheme.tres" id="4_3v120"]
+[ext_resource type="PackedScene" uid="uid://b1uqq7xoh7xlt" path="res://Scenes/UI/UI_Elements/grid_items_container.tscn" id="4_4eap1"]
+[ext_resource type="PackedScene" uid="uid://v46htlia32aa" path="res://Scenes/UI/UI_Elements/ui_item_info.tscn" id="5_gilg6"]
+[ext_resource type="PackedScene" uid="uid://duj0udmmco17h" path="res://Scenes/UI/UI_Elements/ui_character_item_slots.tscn" id="6_iv72i"]
+[ext_resource type="PackedScene" uid="uid://d0d5cgl2ic27t" path="res://Scenes/UI/UI_Elements/ui_inventory_item_context_menu.tscn" id="7_4aoof"]
+
+[sub_resource type="Animation" id="Animation_umrv3"]
+resource_name = "ScrollItems"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainerItemGrids:scroll_horizontal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0, 472]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwaou"]
+_data = {
+"ScrollItems": SubResource("Animation_umrv3")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qt4ya"]
+
+[node name="UIInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("1_n3wys")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRectBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.411765, 0.411765, 0.411765, 0.352941)
+
+[node name="HBoxMain" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -220.0
+offset_right = 1280.0
+offset_bottom = 220.0
+grow_vertical = 2
+
+[node name="ControlItemColumn" type="Control" parent="HBoxMain"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+
+[node name="VBoxItemColumn" type="VBoxContainer" parent="HBoxMain/ControlItemColumn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -26.0
+offset_right = 5.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxInventoryCategories" type="VBoxContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn"]
+custom_minimum_size = Vector2(560, 94)
+layout_mode = 2
+
+[node name="ControlCatagoryLabelParent" type="Control" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+
+[node name="LabelCatagoryName" type="Label" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_right = 67.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_qbwyn")
+theme_override_font_sizes/font_size = 18
+text = "Bows and Arrows"
+horizontal_alignment = 1
+
+[node name="TimerCategoryName" type="Timer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent"]
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories"]
+custom_minimum_size = Vector2(560, 74)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+columns = 7
+
+[node name="UIInventoryCategory" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer" instance=ExtResource("2_622c8")]
+layout_mode = 2
+
+[node name="UIInventoryCategory2" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer" instance=ExtResource("2_622c8")]
+layout_mode = 2
+
+[node name="UIInventoryCategory3" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer" instance=ExtResource("2_622c8")]
+layout_mode = 2
+
+[node name="UIInventoryCategory4" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer" instance=ExtResource("2_622c8")]
+layout_mode = 2
+
+[node name="UIInventoryCategory5" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer" instance=ExtResource("2_622c8")]
+layout_mode = 2
+
+[node name="UIInventoryCategory6" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer" instance=ExtResource("2_622c8")]
+layout_mode = 2
+
+[node name="UIInventoryCategory7" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer" instance=ExtResource("2_622c8")]
+layout_mode = 2
+
+[node name="HBoxInventoryItem" type="HBoxContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn"]
+custom_minimum_size = Vector2(0, 388)
+layout_mode = 2
+
+[node name="ControlLeftColumn" type="Control" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem"]
+custom_minimum_size = Vector2(42, 327)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ButtonLeft" type="TextureButton" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_yleul")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[node name="ScrollContainerItemGrids" type="ScrollContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem"]
+custom_minimum_size = Vector2(468, 372)
+layout_mode = 2
+theme = ExtResource("4_3v120")
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="HBoxItemGridsContainer" type="HBoxContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids"]
+custom_minimum_size = Vector2(468, 372)
+layout_mode = 2
+
+[node name="GridItemsContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer2" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer3" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer4" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer5" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer6" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer7" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer8" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="GridItemsContainer9" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids/HBoxItemGridsContainer" instance=ExtResource("4_4eap1")]
+layout_mode = 2
+
+[node name="ControlRightColumn" type="Control" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem"]
+custom_minimum_size = Vector2(42, 327)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ButtonRight" type="TextureButton" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlRightColumn"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_yleul")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem"]
+libraries = {
+"": SubResource("AnimationLibrary_gwaou")
+}
+
+[node name="VSeparator" type="VSeparator" parent="HBoxMain"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_qt4ya")
+
+[node name="ControlInfoColumn" type="Control" parent="HBoxMain"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="VBoxInfoColumn" type="VBoxContainer" parent="HBoxMain/ControlInfoColumn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIItemInfo" parent="HBoxMain/ControlInfoColumn" instance=ExtResource("5_gilg6")]
+layout_mode = 1
+
+[node name="UICharacterItemSlots" parent="HBoxMain/ControlInfoColumn" instance=ExtResource("6_iv72i")]
+layout_mode = 1
+
+[node name="UIContextMenuContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIInventoryItemContextMenu" parent="UIContextMenuContainer" instance=ExtResource("7_4aoof")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_top = -60.0
+offset_right = 240.0
+offset_bottom = 60.0
+grow_horizontal = 1
+
+[connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn/ButtonLeft" to="." method="_on_ButtonLeft_pressed"]
+[connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlRightColumn/ButtonRight" to="." method="_on_ButtonRight_pressed"]
+[connection signal="animation_finished" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

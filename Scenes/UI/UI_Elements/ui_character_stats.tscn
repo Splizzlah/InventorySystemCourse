@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cogkamd1by35d"]
+
+[ext_resource type="Theme" uid="uid://vmfiqeamd8ib" path="res://SavedThemes/newtheme.tres" id="1_xbymb"]
+
+[node name="UICharacterStats" type="Control"]
+custom_minimum_size = Vector2(300, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_xbymb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelLevel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Level 2"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 8)
+layout_mode = 2
+max_value = 1.0
+step = 0.05

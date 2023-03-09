@@ -1,0 +1,156 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4l5un8pov1q"]
+
+[ext_resource type="FontFile" uid="uid://b0w2wk3o6fqjl" path="res://SavedFonts/BoldItalicRoboto.tres" id="1_36l0t"]
+[ext_resource type="PackedScene" uid="uid://co37x8bpy2gop" path="res://Scenes/UI/ui_inventory.tscn" id="2_awutk"]
+[ext_resource type="Texture2D" uid="uid://cs2rwv6j8e4ba" path="res://Assets/UI/Icons/pouch.png" id="2_cxpva"]
+[ext_resource type="FontFile" uid="uid://b6sa7jefk1q6q" path="res://SavedFonts/normal.tres" id="3_m47e1"]
+[ext_resource type="PackedScene" uid="uid://cogkamd1by35d" path="res://Scenes/UI/UI_Elements/ui_character_stats.tscn" id="4_5pcs8"]
+[ext_resource type="Texture2D" uid="uid://joms5f7g1qct" path="res://Assets/UI/Prompts/Tab_Key_Light.png" id="6_1hujq"]
+
+[node name="UIInventoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ControlHeader" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ColorRectBackground" type="ColorRect" parent="VBoxContainer/ControlHeader"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.560784, 0.560784, 0.560784, 0.305882)
+
+[node name="LabelTitle" type="Label" parent="VBoxContainer/ControlHeader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_36l0t")
+theme_override_font_sizes/font_size = 64
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="ColorRectSepartor" type="ColorRect" parent="VBoxContainer/ControlHeader"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.4, 0.4, 0.4, 0.627451)
+
+[node name="HBoxGold" type="HBoxContainer" parent="VBoxContainer/ControlHeader"]
+custom_minimum_size = Vector2(150, 64)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ControlHeader/HBoxGold"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_cxpva")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LabelGold" type="Label" parent="VBoxContainer/ControlHeader/HBoxGold"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_m47e1")
+theme_override_font_sizes/font_size = 22
+text = "2322"
+vertical_alignment = 1
+
+[node name="UICharacterStats" parent="VBoxContainer/ControlHeader" instance=ExtResource("4_5pcs8")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 320.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="UIInventory" parent="VBoxContainer" instance=ExtResource("2_awutk")]
+custom_minimum_size = Vector2(1280, 560)
+layout_mode = 2
+
+[node name="ControlFooter" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRectBackground" type="ColorRect" parent="VBoxContainer/ControlFooter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.560784, 0.560784, 0.560784, 0.305882)
+
+[node name="ColorRectSeparator" type="ColorRect" parent="VBoxContainer/ControlFooter"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0.560784, 0.560784, 0.560784, 0.305882)
+
+[node name="HBoxPrompts" type="HBoxContainer" parent="VBoxContainer/ControlFooter"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TexturePromptClose" type="TextureButton" parent="VBoxContainer/ControlFooter/HBoxPrompts"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_1hujq")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LabelClose" type="Label" parent="VBoxContainer/ControlFooter/HBoxPrompts"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_36l0t")
+text = "Close"

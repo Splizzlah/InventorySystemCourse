@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1uqq7xoh7xlt"]
+
+[ext_resource type="PackedScene" uid="uid://bpl1fark0lbyh" path="res://Scenes/UI/UI_Elements/ui_inventory_grid_item.tscn" id="1_7vtyx"]
+
+[node name="GridItemsContainer" type="GridContainer"]
+custom_minimum_size = Vector2(468, 388)
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 5
+
+[node name="UIInventoryGridItem" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem2" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem3" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem4" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem5" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem6" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem7" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem8" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem9" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem10" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem11" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem12" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem13" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem14" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem15" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem16" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem17" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem18" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem19" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2
+
+[node name="UIInventoryGridItem20" parent="." instance=ExtResource("1_7vtyx")]
+layout_mode = 2

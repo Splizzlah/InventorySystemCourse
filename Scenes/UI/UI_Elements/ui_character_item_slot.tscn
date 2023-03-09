@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpbhwdpjrlrfp"]
+
+[ext_resource type="PackedScene" uid="uid://vf6ay4071ty1" path="res://Scenes/UI/UI_Elements/ui_frame.tscn" id="1_0118f"]
+[ext_resource type="Texture2D" uid="uid://hek0nli3r4c" path="res://Assets/UI/ButtonBackgrounds/Highlight-Normal.png" id="2_hhmv1"]
+
+[node name="UICharacterItemSlot" type="Control"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1190.0
+offset_bottom = -630.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIFrame" parent="." instance=ExtResource("1_0118f")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="UIFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hhmv1")
+expand_mode = 1

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EntityItem" load_steps=3 format=3 uid="uid://cum8qnjosrkio"]
+
+[ext_resource type="Script" path="res://Scripts/EntityItem.gd" id="1_5tuyx"]
+[ext_resource type="Texture2D" uid="uid://cxsqbron645q" path="res://Assets/Sprites/Helmets/ClericHood.png" id="2_4lvmq"]
+
+[resource]
+resource_name = "Hoody Helm"
+script = ExtResource("1_5tuyx")
+category_type = 5
+name = "Hoody"
+texture_icon = ExtResource("2_4lvmq")
+attack_power = 0
+defence_value = 0
+price = 50.0
+special_trait = "14% Stealth"
+effect = "Invisable Penis"
+description = "Some Stuff here"

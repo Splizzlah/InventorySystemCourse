@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EntityItemCatagoryDisplay" load_steps=3 format=3 uid="uid://wqtbdy7kaa0s"]
+
+[ext_resource type="Script" path="res://Scripts/EntityItemCatagory.gd" id="1_jhdpw"]
+[ext_resource type="Texture2D" uid="uid://bcjcbcmqrv88t" path="res://Assets/UI/Icons/ItemCategories/Armors.png" id="2_53kc6"]
+
+[resource]
+script = ExtResource("1_jhdpw")
+types = Array[int]([0, 2, 4, 5])
+display_name = "Armors"
+texture_icon = ExtResource("2_53kc6")

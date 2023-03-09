@@ -1,0 +1,44 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://vmfiqeamd8ib"]
+
+[ext_resource type="StyleBox" uid="uid://cghp51ml8g6vs" path="res://SavedStyles/new_style_box_focus.tres" id="1_71gx5"]
+[ext_resource type="FontFile" uid="uid://mu7gnyrkh5mi" path="res://SavedFonts/bold.tres" id="1_cpsnn"]
+[ext_resource type="FontFile" uid="uid://b0w2wk3o6fqjl" path="res://SavedFonts/BoldItalicRoboto.tres" id="1_pty8x"]
+[ext_resource type="StyleBox" uid="uid://snss1spw0rp0" path="res://SavedStyles/new_style_box_hover.tres" id="2_lkfy2"]
+[ext_resource type="FontFile" uid="uid://bci3rn67bghha" path="res://SavedFonts/LightRoboto.tres" id="2_sqnl6"]
+[ext_resource type="StyleBox" uid="uid://b2phhibr6t1dq" path="res://SavedStyles/new_style_box_normal.tres" id="3_7rmjb"]
+[ext_resource type="FontFile" uid="uid://b6sa7jefk1q6q" path="res://SavedFonts/normal.tres" id="3_vxe00"]
+[ext_resource type="StyleBox" uid="uid://d1gu7numjbmeh" path="res://SavedStyles/new_style_box_pressed.tres" id="4_qu2xv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ewgk"]
+bg_color = Color(0, 0, 0, 0.435294)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0.32549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25ct2"]
+bg_color = Color(0.596078, 0.305882, 0.388235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[resource]
+Button/fonts/font = ExtResource("1_cpsnn")
+Button/styles/focus = ExtResource("1_71gx5")
+Button/styles/hover = ExtResource("2_lkfy2")
+Button/styles/normal = ExtResource("3_7rmjb")
+Button/styles/pressed = ExtResource("4_qu2xv")
+HScrollBar/styles/grabber = null
+HScrollBar/styles/scroll = null
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("3_vxe00")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_1ewgk")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_25ct2")
+RichTextLabel/font_sizes/bold_font_size = 22
+RichTextLabel/font_sizes/bold_italics_font_size = 12
+RichTextLabel/fonts/bold_font = ExtResource("1_pty8x")
+RichTextLabel/fonts/italics_font = ExtResource("2_sqnl6")
+RichTextLabel/fonts/normal_font = ExtResource("3_vxe00")

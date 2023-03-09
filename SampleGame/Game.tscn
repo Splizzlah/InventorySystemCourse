@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://4p82kyhjue1b"]
+
+[ext_resource type="Script" path="res://SampleGame/CharacterBody2D.gd" id="3_03t8i"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://b4l5un8pov1q" path="res://Scenes/ui_inventory_screen.tscn" id="4_4qkol"]
+[ext_resource type="Texture2D" uid="uid://ca7xixhs7s868" path="res://Assets/Sprites/Player.png" id="5"]
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(8, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2v1vr"]
+size = Vector3(2000, 40, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt0jm"]
+size = Vector2(2000, 20)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("4")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(584, 324)
+scale = Vector2(5, 5)
+script = ExtResource("3_03t8i")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("3")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("3")
+
+[node name="Slab" type="Node2D" parent="."]
+position = Vector2(604, 605)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Slab"]
+mesh = SubResource("BoxMesh_2v1vr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Slab/MeshInstance2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slab/MeshInstance2D/StaticBody2D"]
+shape = SubResource("RectangleShape2D_yt0jm")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIInventoryScreen" parent="UI" instance=ExtResource("4_4qkol")]
+layout_mode = 1
+
+[connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_Area2D_area_entered"]

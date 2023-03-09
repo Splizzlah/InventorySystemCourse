@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf6ajbj26akkh"]
+
+[ext_resource type="Texture2D" uid="uid://bcjcbcmqrv88t" path="res://Assets/UI/Icons/ItemCategories/Armors.png" id="1_c64df"]
+
+[node name="UIInventoryCategory" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1206.0
+offset_bottom = -646.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainerIcon" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="ButtonCategoryIcon" type="TextureButton" parent="CenterContainerIcon"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("1_c64df")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ColorRectBackground" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(70, 1)
+layout_mode = 2
+color = Color(0.623529, 0.611765, 0, 1)

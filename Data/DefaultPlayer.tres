@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EntityPlayer" load_steps=7 format=3 uid="uid://eds7xxcx3gtp"]
+
+[ext_resource type="Resource" uid="uid://8u23yyxixm5y" path="res://Data/Items/Armors/Cleric_Armors.tres" id="1_io784"]
+[ext_resource type="Script" path="res://Scripts/EntityPlayer.gd" id="1_xuesc"]
+[ext_resource type="Resource" uid="uid://cum8qnjosrkio" path="res://Data/Items/Helmets/ClericHood_Helmets.tres" id="2_2n1kg"]
+[ext_resource type="Resource" uid="uid://cfgwu5nuym6kk" path="res://Data/Items/Weapons/Weapons_ClericWand.tres" id="3_7u2cb"]
+[ext_resource type="Resource" uid="uid://nysnfwrx5qfh" path="res://Data/Items/Armors/Ariel_Dress.tres" id="4_1kwi4"]
+[ext_resource type="Resource" uid="uid://c8rw726g6s4qd" path="res://Data/Items/Potions/potion_poison.tres" id="5_csx47"]
+
+[resource]
+script = ExtResource("1_xuesc")
+inventory = Array[Resource]([ExtResource("3_7u2cb"), ExtResource("2_2n1kg"), ExtResource("1_io784"), ExtResource("4_1kwi4"), ExtResource("5_csx47"), ExtResource("4_1kwi4"), ExtResource("4_1kwi4"), ExtResource("4_1kwi4"), ExtResource("4_1kwi4"), ExtResource("4_1kwi4"), ExtResource("5_csx47"), ExtResource("5_csx47"), ExtResource("5_csx47"), ExtResource("1_io784"), ExtResource("2_2n1kg"), ExtResource("1_io784"), ExtResource("1_io784"), ExtResource("4_1kwi4"), ExtResource("1_io784"), ExtResource("4_1kwi4"), ExtResource("4_1kwi4"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

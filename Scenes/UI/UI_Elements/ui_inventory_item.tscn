@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4hfs4gwebbgt"]
+
+[ext_resource type="PackedScene" uid="uid://vf6ay4071ty1" path="res://Scenes/UI/UI_Elements/ui_frame.tscn" id="1_57tfw"]
+[ext_resource type="Script" path="res://Scripts/UI/ui_inventory_item.gd" id="1_j2rmm"]
+[ext_resource type="Texture2D" uid="uid://hek0nli3r4c" path="res://Assets/UI/ButtonBackgrounds/Highlight-Normal.png" id="2_m5a08"]
+[ext_resource type="Texture2D" uid="uid://bc4lffvjlv7oa" path="res://Assets/Sprites/Shields/HermitLamp.png" id="3_et5bj"]
+[ext_resource type="Texture2D" uid="uid://bjbwq7nq42wqh" path="res://Assets/UI/ButtonBackgrounds/Item-Border-Selected.png" id="5_lcad2"]
+
+[sub_resource type="Animation" id="Animation_nmx1n"]
+resource_name = "DeHighlight"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UIFrame/ColorHighlighted:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0.490196), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n2287"]
+resource_name = "Highlight"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UIFrame/ColorHighlighted:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.05, 0.1),
+"transitions": PackedFloat32Array(0.5, 0.5, -0.5, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.756863), Color(1, 1, 1, 0.490196)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2vjcv"]
+_data = {
+"DeHighlight": SubResource("Animation_nmx1n"),
+"Highlight": SubResource("Animation_n2287")
+}
+
+[node name="UIInventoryItem" type="Control"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 72.0
+offset_bottom = 72.0
+script = ExtResource("1_j2rmm")
+
+[node name="UIFrame" parent="." instance=ExtResource("1_57tfw")]
+custom_minimum_size = Vector2(72, 72)
+layout_direction = 1
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 72.0
+offset_bottom = 72.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="TextureItemBackground" type="TextureRect" parent="UIFrame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -33.0
+offset_right = 33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m5a08")
+expand_mode = 1
+
+[node name="TextureItemSprite" type="TextureRect" parent="UIFrame/TextureItemBackground"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 34.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_et5bj")
+expand_mode = 1
+
+[node name="ButtonSelection" type="TextureButton" parent="UIFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_lcad2")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ColorHighlighted" type="ColorRect" parent="UIFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIFrame"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_2vjcv")
+}
