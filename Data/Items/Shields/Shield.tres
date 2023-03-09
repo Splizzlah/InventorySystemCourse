@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="EntityItem" load_steps=3 format=3 uid="uid://eybghutq525f"]
 
 [ext_resource type="Script" path="res://Scripts/EntityItem.gd" id="1_d8y47"]
-[ext_resource type="Texture2D" uid="uid://bc4lffvjlv7oa" path="res://Assets/Sprites/Shields/HermitLamp.png" id="2_v4lqd"]
+[ext_resource type="Texture2D" uid="uid://d0kc1fy23mqgo" path="res://Assets/Sprites/Shields/WoodenShield.png" id="2_to0us"]
 
 [resource]
 resource_name = "Shield"
 script = ExtResource("1_d8y47")
 category_type = 6
 name = "Shield"
-texture_icon = ExtResource("2_v4lqd")
+texture_icon = ExtResource("2_to0us")
 attack_power = 0
 defense_value = 0
 price = 15000.0

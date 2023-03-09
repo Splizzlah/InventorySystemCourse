@@ -131,13 +131,13 @@ func _reload_items() -> void:
 			while pages_to_assign > 0:
 				_pages_to_category_displays[pages_to_assign + starting_page] = category_display
 				pages_to_assign -= 1
-		#HACK this is needed but doesnt work so the container can havbe its size updated after
+		#HACK this is needed but doesnt work so the container can have its size updated after
 		# the children grids were added dynamically
 	_item_grids_container.set_visible(false)
 	await get_tree().create_timer(0.0001).timeout
 	_item_grids_container.set_visible(true)
 		
-	_current_scroll_page = 1 
+	_current_scroll_page = 1
 	_amount_scroll_pages = _item_grids_container.get_child_count()
 		
 	if _amount_scroll_pages > 0:
