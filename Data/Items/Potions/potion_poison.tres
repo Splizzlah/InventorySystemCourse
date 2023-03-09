@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="EntityItem" load_steps=2 format=3 uid="uid://c8rw726g6s4qd"]
+[gd_resource type="Resource" script_class="EntityItem" load_steps=3 format=3 uid="uid://c8rw726g6s4qd"]
 
 [ext_resource type="Script" path="res://Scripts/EntityItem.gd" id="1_iugr5"]
+[ext_resource type="Texture2D" uid="uid://bjiesbocaxarf" path="res://Assets/UI/Icons/dollar.png" id="2_3jrcx"]
 
 [resource]
 resource_name = "Potion"
 script = ExtResource("1_iugr5")
 category_type = 3
 name = "Potion"
+texture_icon = ExtResource("2_3jrcx")
 attack_power = 0
 defense_value = 0
 price = 0.0

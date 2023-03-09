@@ -67,12 +67,17 @@ func _reload_items() -> void:
 		_item_grids_container.remove_child(child)
 	
 	var grid
+	var amount_items := 0
 	
 	for item in GameState.player_data.inventory:
 		if not item:
 			continue
 		
-		if not grid:
+		amount_items += 1
+		
+		var is_page_full := ((amount_items - 1) % ItemsPerGrid) == 0
+		
+		if not grid or (grid and is_page_full):
 			grid = _grid_template.instantiate()
 			
 			for child in grid.get_children():
