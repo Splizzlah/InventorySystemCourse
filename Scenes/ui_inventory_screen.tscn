@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b4l5un8pov1q"]
 
 [ext_resource type="FontFile" uid="uid://b0w2wk3o6fqjl" path="res://SavedFonts/BoldItalicRoboto.tres" id="1_36l0t"]
-[ext_resource type="PackedScene" uid="uid://co37x8bpy2gop" path="res://Scenes/UI/ui_inventory.tscn" id="2_awutk"]
+[ext_resource type="PackedScene" uid="uid://dlilu27hon4ol" path="res://Scenes/UI/ui_inventory.tscn" id="2_awutk"]
 [ext_resource type="Texture2D" uid="uid://cs2rwv6j8e4ba" path="res://Assets/UI/Icons/pouch.png" id="2_cxpva"]
 [ext_resource type="FontFile" uid="uid://b6sa7jefk1q6q" path="res://SavedFonts/normal.tres" id="3_m47e1"]
 [ext_resource type="PackedScene" uid="uid://cogkamd1by35d" path="res://Scenes/UI/UI_Elements/ui_character_stats.tscn" id="4_5pcs8"]

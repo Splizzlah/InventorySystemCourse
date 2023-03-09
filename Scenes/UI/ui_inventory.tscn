@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://co37x8bpy2gop"]
+[gd_scene load_steps=13 format=3 uid="uid://dlilu27hon4ol"]
 
-[ext_resource type="Script" path="res://Scenes/UI/ui_inventory.gd" id="1_ftl88"]
+[ext_resource type="Script" path="res://Scripts/UI/ui_inventory.gd" id="1_gr3rj"]
 [ext_resource type="FontFile" uid="uid://bci3rn67bghha" path="res://SavedFonts/LightRoboto.tres" id="1_qbwyn"]
-[ext_resource type="PackedScene" uid="uid://bf6ajbj26akkh" path="res://Scenes/UI/UI_Elements/ui_inventory_category.tscn" id="2_622c8"]
+[ext_resource type="PackedScene" uid="uid://c3n7chxsh7g75" path="res://Scenes/UI/UI_Elements/ui_inventory_category.tscn" id="2_622c8"]
 [ext_resource type="Texture2D" uid="uid://c0jnp77322ktq" path="res://Assets/UI/Icons/ArrowRight.png" id="3_yleul"]
 [ext_resource type="Theme" uid="uid://vmfiqeamd8ib" path="res://SavedThemes/newtheme.tres" id="4_3v120"]
 [ext_resource type="PackedScene" uid="uid://b1uqq7xoh7xlt" path="res://Scenes/UI/UI_Elements/grid_items_container.tscn" id="4_4eap1"]
@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-script = ExtResource("1_ftl88")
+script = ExtResource("1_gr3rj")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRectBackground" type="ColorRect" parent="."]

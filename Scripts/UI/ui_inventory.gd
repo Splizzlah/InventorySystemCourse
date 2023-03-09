@@ -69,8 +69,16 @@ func _reload_categories() -> void:
 		ui.set_name(category_display.display_name)
 		_grid_categories.add_child(ui)
 		
+		
+		
 		if GameState.count_inventory_items_from_category_display(category_display) > 0:
 			var button = ui.get_button()
+			button.connect("mouse_entered", Callable(self, "_on_button_category_mouse_entered").bind(
+				ui
+			))
+			button.connect("mouse_exited", Callable(self, "_on_button_category_mouse_exited").bind(
+				ui
+			))
 			button.connect( "pressed",Callable(self, "on_button_category_pressed").bind(
 				_category_displays_to_pages.get(category_display)
 			))
@@ -80,12 +88,36 @@ func _reload_categories() -> void:
 		_category_displays_to_ui[category_display] = ui
 		
 		
+func _set_active_category_display() -> void:
+	var category_display = _pages_to_category_displays[_current_scroll_page]
+	var ui = _category_displays_to_ui.get(category_display)
+	
+	if not ui:
+		return
+		
+	if _current_active_ui_inventory_category and ui != _current_active_ui_inventory_category:
+		_current_active_ui_inventory_category.set_active(false)
+		
+	ui.set_active(true)
+	_current_active_ui_inventory_category = ui
+	
+	_show_category_display_label(ui)
+func _show_category_display_label(ui_inventory_category: Node) -> void:
+	if not ui_inventory_category:
+		if not _current_active_ui_inventory_category:
+			return
+			
+		ui_inventory_category = _current_active_ui_inventory_category
+		
+	_label_category_name.set_text(ui_inventory_category.get_category().display_name)
+	
+	
 func _reload_items() -> void:
 	var pages := 0
 	var inventory_by_category := GameState.player_data.get_inventory_by_category()
 	for child in _item_grids_container.get_children():
 		_item_grids_container.remove_child(child)
-		#child.queue_free()
+		
 
 	for category_display in GameState.item_category_displays:
 		var starting_page := pages
@@ -110,9 +142,12 @@ func _reload_items() -> void:
 						grid = _grid_template.instantiate()
 						grid.set_name(category_display.display_name)
 						
+						grid.set_visible(false)
+						await get_tree().create_timer(0.001).timeout
+						grid.set_visible(true)
 						
 						for child in grid.get_children():
-							child.queue_free()
+							grid.remove_child(child)
 							
 						_item_grids_container.add_child(grid)
 
@@ -134,7 +169,7 @@ func _reload_items() -> void:
 		#HACK this is needed but doesnt work so the container can have its size updated after
 		# the children grids were added dynamically
 	_item_grids_container.set_visible(false)
-	await get_tree().create_timer(0.0001).timeout
+	await get_tree().create_timer(0.001).timeout
 	_item_grids_container.set_visible(true)
 		
 	_current_scroll_page = 1
@@ -144,13 +179,15 @@ func _reload_items() -> void:
 		_page_size = _item_grids_container.get_size().x / _amount_scroll_pages
 			
 	_scroll_container.set_h_scroll(0)
-	_update_navigation()
+	
 	
 	_reload_categories()
+	_update_navigation()
 
 
 func _on_button_Right_pressed() -> void:
 	_go_to_item_page(_current_scroll_page + 1)
+
 
 
 func _on_button_Left_pressed():
@@ -205,7 +242,7 @@ func _update_navigation() -> void:
 		
 	_is_scrolling = false
 	
-	#_set_active_category_display()
+	_set_active_category_display()
 
 
 func _on_animation_player_animation_finished(anim_name):
@@ -214,3 +251,17 @@ func _on_animation_player_animation_finished(anim_name):
 
 func on_button_category_pressed(go_to_page : int) -> void:
 	_go_to_item_page(go_to_page)
+
+func _on_button_category_mouse_entered(ui_inventory_category : Node) -> void:
+	if ui_inventory_category:
+		ui_inventory_category.highlight(true)
+		
+func _on_button_category_mouse_exited(ui_inventory_category : Node) -> void:
+	var category_display = _pages_to_category_displays[_scrolling_to_page]
+	var ui = _category_displays_to_ui.get(category_display)
+	
+	if ui and ui == ui_inventory_category:
+		return
+	
+	
+	ui_inventory_category.dehighlight(true)

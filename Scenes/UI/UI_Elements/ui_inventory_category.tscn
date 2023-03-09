@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf6ajbj26akkh"]
+[gd_scene load_steps=3 format=3 uid="uid://c3n7chxsh7g75"]
 
 [ext_resource type="Texture2D" uid="uid://bcjcbcmqrv88t" path="res://Assets/UI/Icons/ItemCategories/Armors.png" id="1_c64df"]
-[ext_resource type="Script" path="res://Scenes/UI/UI_Elements/ui_inventory_category.gd" id="1_ydlg6"]
+[ext_resource type="Script" path="res://Scripts/UI/ui_inventory_category.gd" id="1_ydlg6"]
 
 [node name="UIInventoryCategory" type="VBoxContainer"]
 anchors_preset = 15
@@ -18,6 +18,7 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
 [node name="ButtonCategoryIcon" type="TextureButton" parent="CenterContainerIcon"]
+modulate = Color(1, 1, 1, 0.372549)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = ExtResource("1_c64df")
