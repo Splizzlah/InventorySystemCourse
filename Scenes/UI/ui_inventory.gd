@@ -130,4 +130,18 @@ func _go_to_item_page(go_to_page :int) -> void:
 		
 	_scroll_container.set_h_scroll(to)
 	_current_scroll_page = go_to_page
-
+	_update_navigation()
+func _update_navigation() -> void:
+	if _current_scroll_page == 1:
+		_button_left.set_visible(false)
+	else:
+		_button_left.set_visible(true)
+		
+	if _current_scroll_page == _amount_scroll_pages or _amount_scroll_pages == 0:
+		_button_right.set_visible(false)
+	else:
+		_button_right.set_visible(true)
+		
+	_is_scrolling = false
+	
+	#_set_active_category_display()
