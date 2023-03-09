@@ -25,7 +25,7 @@ var _scrolling_to_page := 1
 
 @onready var _grid_categories := $HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/CenterContainer/GridContainer
 @onready var _label_category_name := $HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent/LabelCatagoryName
-#@onready var _timer_category_name : Timer = $HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent/TimerCategoryName
+@onready var _timer_category_name : Timer = $HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent/TimerCategoryName
 
 var _ui_inventory_category := preload("res://Scenes/UI/UI_Elements/ui_inventory_category.tscn")
 
@@ -102,6 +102,7 @@ func _set_active_category_display() -> void:
 	_current_active_ui_inventory_category = ui
 	
 	_show_category_display_label(ui)
+	
 func _show_category_display_label(ui_inventory_category: Node) -> void:
 	if not ui_inventory_category:
 		if not _current_active_ui_inventory_category:
@@ -111,6 +112,20 @@ func _show_category_display_label(ui_inventory_category: Node) -> void:
 		
 	_label_category_name.set_text(ui_inventory_category.get_category().display_name)
 	
+	var button = ui_inventory_category.get_button()
+	
+	# HACK: without a delay like this, button.get_global_position()
+	#sometimes still returns local psotion instead of global position
+	await get_tree().create_timer(0.001).timeout
+	
+	var icon_center_global_x = button.get_global_position().x + button.get_rect().size.x /2
+	var label_half_width = _label_category_name.get_rect().size.x / 2
+	var label_position = Vector2(icon_center_global_x - label_half_width, _label_category_name.get_global_position().y)
+	
+	_label_category_name.set_global_position(label_position, true)
+	_label_category_name.set_visible(true)
+	
+	ui_inventory_category.highlight(true)
 	
 func _reload_items() -> void:
 	var pages := 0
@@ -157,6 +172,12 @@ func _reload_items() -> void:
 					
 					var ui_inventory_item = ui_grid_item.get_ui_inventory_item()
 					ui_inventory_item.set_item(item)
+					
+					var button = ui_inventory_item.get_button()
+					button.connect("mouse_entered", Callable(self, "_on_button_item_mouse_entered").bind(ui_inventory_item))
+					button.connect("mouse_exited", Callable(self, "_on_button_item_mouse_exited").bind(ui_inventory_item))
+					button.connect("pressed", Callable(self, "on_button_item_mouse_pressed"))
+					
 			
 			_category_displays_to_pages[category_display] = starting_page + 1
 			#assign all pgaages number to this display ( this is ncessary,
@@ -253,8 +274,8 @@ func on_button_category_pressed(go_to_page : int) -> void:
 	_go_to_item_page(go_to_page)
 
 func _on_button_category_mouse_entered(ui_inventory_category : Node) -> void:
-	if ui_inventory_category:
-		ui_inventory_category.highlight(true)
+	_timer_category_name.stop()
+	_show_category_display_label(ui_inventory_category)
 		
 func _on_button_category_mouse_exited(ui_inventory_category : Node) -> void:
 	var category_display = _pages_to_category_displays[_scrolling_to_page]
@@ -264,4 +285,29 @@ func _on_button_category_mouse_exited(ui_inventory_category : Node) -> void:
 		return
 	
 	
-	ui_inventory_category.dehighlight(true)
+	ui_inventory_category.dehighlight()
+	
+	# Show the active category label again
+	_timer_category_name.stop()
+	_timer_category_name.start()
+
+
+func _on_timer_category_name_timeout():
+	_show_category_display_label(_current_active_ui_inventory_category)
+	
+	
+func _on_button_item_mouse_entered(ui_inventory_item : Node) -> void:
+	if _is_scrolling: return
+	ui_inventory_item.select()
+	#_show_item_info(ui_inventory_item.get_item())
+
+func _on_button_item_mouse_exited(ui_inventory_item : Node) -> void:
+	if _is_scrolling: return
+
+#	if _context_menu.get_ui_inventory_item() and _context_menu.get_ui_inventory_item() == ui_inventory_item:
+#		return
+
+	ui_inventory_item.deselect()
+func _show_item_info(item : EntityItem) -> void:
+	_ui_item_info.set_item(item)
+	_ui_item_info.set_visible(true)

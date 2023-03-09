@@ -104,6 +104,10 @@ theme_override_font_sizes/font_size = 18
 text = "Bows and Arrows"
 horizontal_alignment = 1
 
+[node name="TimerCategoryName" type="Timer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent"]
+wait_time = 0.35
+one_shot = true
+
 [node name="CenterContainer" type="CenterContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories"]
 custom_minimum_size = Vector2(560, 74)
 layout_mode = 2
@@ -271,6 +275,7 @@ offset_right = 240.0
 offset_bottom = 60.0
 grow_horizontal = 1
 
+[connection signal="timeout" from="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent/TimerCategoryName" to="." method="_on_timer_category_name_timeout"]
 [connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn/ButtonLeft" to="." method="_on_button_Left_pressed"]
 [connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlRightColumn/ButtonRight" to="." method="_on_button_Right_pressed"]
 [connection signal="animation_finished" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
