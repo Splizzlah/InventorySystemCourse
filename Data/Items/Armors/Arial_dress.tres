@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7nhoodrfxdqe" path="res://Assets/Sprites/Armors/ArielDress.png" id="2_vvnx7"]
 
 [resource]
-resource_name = "ChestPlate"
+resource_name = "Cleric"
 script = ExtResource("1_myffl")
 category_type = 0
 name = "Cleric"

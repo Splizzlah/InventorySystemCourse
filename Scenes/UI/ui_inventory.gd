@@ -84,3 +84,9 @@ func _reload_items() -> void:
 		ui_grid_item.set_name(item.resource_name)
 		grid.add_child(ui_grid_item)
 		
+		var ui_inventory_item = ui_grid_item.get_ui_inventory_item()
+		ui_inventory_item.set_item(item)
+		
+		
+		
+		
