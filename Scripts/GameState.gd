@@ -3,7 +3,7 @@ const ItemCategoryDisplaysPath = "res://Data/ItemCategoryDisplays/"
 var player_data : EntityPlayer
 
 var _default_player : EntityPlayer = preload("res://Data/DefaultPlayer.tres")
-var item_category_displays : Array
+var item_category_displays : Array = []
 
 func _init() -> void:
 	item_category_displays = FileUtils.load_resources_from_path(ItemCategoryDisplaysPath)

@@ -2,15 +2,8 @@ extends Resource
 class_name EntityPlayer
 
 @export var inventory :Array[Resource] = []
-#var inventory_by_category : Dictionary , set = get_inventory_by_category
 var inventory_by_category: set = index_inventory, get = get_inventory_by_category
 
-#var inventory_by_category:
-#	get:
-#		get_inventory_by_category()
-#		return inventory_by_category
-#	set(inventory_by_category):
-#		index_inventory(inventory_by_category)
 
 func make_inventory_unique() -> void:
 	
@@ -19,7 +12,7 @@ func make_inventory_unique() -> void:
 			if inventory[idx]:
 				inventory[idx] = inventory[idx].duplicate()
 
-func index_inventory(inventory_by_category: Dictionary) -> void:       # This is the setter
+func index_inventory(Dictionary) -> void:       # This is the setter
 	inventory_by_category = {}
 	for item in inventory:
 		if item is EntityItem:

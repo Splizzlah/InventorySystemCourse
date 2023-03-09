@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://ckfxkx74e6w2x" path="res://Assets/Sprites/OneHandedWeapons/ClericWand1.png" id="2_p63oj"]
 
 [resource]
-resource_name = "Cleric Weapon Set"
+resource_name = "Weapon"
 script = ExtResource("1_68csw")
 category_type = 7
 name = "Cleric Wand of Dash"
 texture_icon = ExtResource("2_p63oj")
 attack_power = 500
-defence_value = 0
+defense_value = 0
 price = 20000.0
 special_trait = "Healing +15%"
 effect = "Increases healing magic"

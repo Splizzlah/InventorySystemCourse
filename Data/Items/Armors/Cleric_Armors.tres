@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://pqen5ymmjfa1" path="res://Assets/Sprites/Armors/Cleric.png" id="2_omqgv"]
 
 [resource]
-resource_name = "Cleric Armor set"
+resource_name = "ChestPlate"
 script = ExtResource("1_1me0u")
 category_type = 0
-name = "Cleric Armor"
+name = "Cleric"
 texture_icon = ExtResource("2_omqgv")
 attack_power = 0
-defence_value = 45
+defense_value = 0
 price = 15000.0
-special_trait = "Healing 18%"
+special_trait = "Healing 12%"
 effect = "Healing Buff"
-description = "Cleric Set Very Rare"
+description = "Cleric Set Very Unique"

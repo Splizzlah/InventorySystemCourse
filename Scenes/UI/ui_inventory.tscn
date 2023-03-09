@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://co37x8bpy2gop"]
+[gd_scene load_steps=11 format=3 uid="uid://co37x8bpy2gop"]
 
-[ext_resource type="Script" path="res://Scripts/UI/ui_inventory.gd" id="1_n3wys"]
+[ext_resource type="Script" path="res://Scenes/UI/ui_inventory.gd" id="1_ftl88"]
 [ext_resource type="FontFile" uid="uid://bci3rn67bghha" path="res://SavedFonts/LightRoboto.tres" id="1_qbwyn"]
 [ext_resource type="PackedScene" uid="uid://bf6ajbj26akkh" path="res://Scenes/UI/UI_Elements/ui_inventory_category.tscn" id="2_622c8"]
 [ext_resource type="Texture2D" uid="uid://c0jnp77322ktq" path="res://Assets/UI/Icons/ArrowRight.png" id="3_yleul"]
@@ -9,27 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://v46htlia32aa" path="res://Scenes/UI/UI_Elements/ui_item_info.tscn" id="5_gilg6"]
 [ext_resource type="PackedScene" uid="uid://duj0udmmco17h" path="res://Scenes/UI/UI_Elements/ui_character_item_slots.tscn" id="6_iv72i"]
 [ext_resource type="PackedScene" uid="uid://d0d5cgl2ic27t" path="res://Scenes/UI/UI_Elements/ui_inventory_item_context_menu.tscn" id="7_4aoof"]
-
-[sub_resource type="Animation" id="Animation_umrv3"]
-resource_name = "ScrollItems"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ScrollContainerItemGrids:scroll_horizontal")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [0, 472]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwaou"]
-_data = {
-"ScrollItems": SubResource("Animation_umrv3")
-}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qt4ya"]
 
@@ -44,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-script = ExtResource("1_n3wys")
+script = ExtResource("1_ftl88")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRectBackground" type="ColorRect" parent="."]
@@ -104,8 +83,6 @@ theme_override_fonts/font = ExtResource("1_qbwyn")
 theme_override_font_sizes/font_size = 18
 text = "Bows and Arrows"
 horizontal_alignment = 1
-
-[node name="TimerCategoryName" type="Timer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories/ControlCatagoryLabelParent"]
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/VBoxInventoryCategories"]
 custom_minimum_size = Vector2(560, 74)
@@ -227,11 +204,6 @@ texture_normal = ExtResource("3_yleul")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem"]
-libraries = {
-"": SubResource("AnimationLibrary_gwaou")
-}
-
 [node name="VSeparator" type="VSeparator" parent="HBoxMain"]
 layout_mode = 2
 theme_override_constants/separation = 20
@@ -273,7 +245,3 @@ offset_top = -60.0
 offset_right = 240.0
 offset_bottom = 60.0
 grow_horizontal = 1
-
-[connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn/ButtonLeft" to="." method="_on_ButtonLeft_pressed"]
-[connection signal="pressed" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlRightColumn/ButtonRight" to="." method="_on_ButtonRight_pressed"]
-[connection signal="animation_finished" from="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
