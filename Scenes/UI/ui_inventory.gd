@@ -38,7 +38,7 @@ var _current_active_ui_inventory_category : Control
 # Item members
 #
 
-#@onready var _animation_player : AnimationPlayer = $HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/AnimationPlayer
+@onready var _animation_player : AnimationPlayer = $HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/AnimationPlayer
 
 
 @onready var _button_left := $HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn/ButtonLeft
@@ -52,7 +52,7 @@ var _current_ui_inventory_item_selected : Node
 
 
 func _ready():
-	#_scroll_animation = _animation_player.get_animation(ScrollAnimationName)
+	_scroll_animation = _animation_player.get_animation(ScrollAnimationName)
 	_reload()
 	
 	
@@ -104,34 +104,51 @@ func _reload_items() -> void:
 	_update_navigation()
 
 
-func _on_button_right_pressed() -> void:
+func _on_button_Right_pressed() -> void:
 	_go_to_item_page(_current_scroll_page + 1)
+	
 	
 
 
-func _on_button_left_pressed():
+func _on_button_Left_pressed():
 	_go_to_item_page(_current_scroll_page - 1)
+	
 
 
 func _go_to_item_page(go_to_page :int) -> void:
+	if _is_scrolling:
+		return
 	go_to_page = int(clamp(go_to_page, 1, _amount_scroll_pages))
 	
 	if go_to_page == _current_scroll_page:
 		return
 		
+	var from := 0.0
 	var to := 0.0
 	var is_forward := go_to_page > _current_scroll_page
 	
 	# Forward/Right
 	if is_forward:
-		to = _page_size * (go_to_page - 1)
+		if _current_scroll_page > 1:
+			from = _page_size * (_current_scroll_page - 1)
+		if _current_scroll_page < _amount_scroll_pages:
+			to = _page_size * (go_to_page - 1)
 	# backward/left
 	else:
-		to = _page_size * (go_to_page - 1)
+		var amount_pages_to_go = _current_scroll_page - go_to_page
+		to = _page_size * (_current_scroll_page - 1)
+		from = _page_size * (_current_scroll_page - amount_pages_to_go - 1)
 		
-	_scroll_container.set_h_scroll(to)
-	_current_scroll_page = go_to_page
-	_update_navigation()
+	_scroll_animation.track_set_key_value(0, 0, int (from))
+	_scroll_animation.track_set_key_value(0, 1, int (to))
+	
+	_scrolling_to_page = go_to_page
+	_is_scrolling = true
+	
+	if is_forward:
+		_animation_player.play(ScrollAnimationName)
+	else:
+		_animation_player.play_backwards(ScrollAnimationName)
 	
 	
 func _update_navigation() -> void:
@@ -148,3 +165,8 @@ func _update_navigation() -> void:
 	_is_scrolling = false
 	
 	#_set_active_category_display()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	_current_scroll_page = _scrolling_to_page
+	_update_navigation()
