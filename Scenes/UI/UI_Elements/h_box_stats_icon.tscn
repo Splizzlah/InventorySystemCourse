@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://4gyomutmihks"]
+[gd_scene load_steps=4 format=3 uid="uid://4gyomutmihks"]
 
+[ext_resource type="Script" path="res://Scripts/h_box_stats_icon.gd" id="1_0cmyf"]
 [ext_resource type="Texture2D" uid="uid://b472n2jm4bq58" path="res://Assets/UI/Icons/sword.png" id="1_d8mw6"]
 [ext_resource type="FontFile" uid="uid://b0w2wk3o6fqjl" path="res://SavedFonts/BoldItalicRoboto.tres" id="2_aofrh"]
 
 [node name="HBox_Stat_Icons" type="HBoxContainer"]
 theme_override_constants/separation = 3
+script = ExtResource("1_0cmyf")
 
 [node name="Icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(24, 24)

@@ -13,5 +13,5 @@ attack_power = 500
 defense_value = 0
 price = 20000.0
 special_trait = "Healing +15%"
-effect = "Increases healing magic"
+effect = "400+ Inteligence "
 description = "A wand enchanted by demons"

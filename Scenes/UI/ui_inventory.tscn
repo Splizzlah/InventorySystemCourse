@@ -12,6 +12,7 @@
 
 [sub_resource type="Animation" id="Animation_yfwjg"]
 resource_name = "ScrollItems"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,7 +20,7 @@ tracks/0/path = NodePath("ScrollContainerItemGrids:scroll_horizontal")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [0, 606]
@@ -171,6 +172,7 @@ custom_minimum_size = Vector2(468, 372)
 layout_mode = 2
 theme = ExtResource("4_3v120")
 follow_focus = true
+scroll_horizontal = 100
 vertical_scroll_mode = 0
 
 [node name="HBoxItemGridsContainer" type="HBoxContainer" parent="HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ScrollContainerItemGrids"]
@@ -265,7 +267,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UIInventoryItemContextMenu" parent="UIContextMenuContainer" instance=ExtResource("7_4aoof")]
+[node name="UIContextMenu" parent="UIContextMenuContainer" instance=ExtResource("7_4aoof")]
 layout_mode = 1
 anchors_preset = 4
 anchor_left = 0.0

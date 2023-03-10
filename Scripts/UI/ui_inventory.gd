@@ -44,20 +44,22 @@ var _current_active_ui_inventory_category : Control
 @onready var _button_left := $HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlLeftColumn/ButtonLeft
 @onready var _button_right := $HBoxMain/ControlItemColumn/VBoxItemColumn/HBoxInventoryItem/ControlRightColumn/ButtonRight
 @onready var _ui_item_info := $HBoxMain/ControlInfoColumn/UIItemInfo
-#@onready var _context_menu_container := $UIContextMenuContainer
-@onready var _context_menu := $UIContextMenuContainer/UIInventoryItemContextMenu
+@onready var _context_menu_container := $UIContextMenuContainer
+@onready var _context_menu := $UIContextMenuContainer/UIContextMenu
 
 # To keep track of item highlights with mouse hover
 var _current_ui_inventory_item_selected : Node
 
 
 func _ready():
+	_context_menu_container.set_visible(false)
 	_scroll_animation = _animation_player.get_animation(ScrollAnimationName)
 	_reload()
 	
 	
 func _reload() -> void:
 	_reload_items()
+	_setup_context_menu()
 	
 	
 func _reload_categories() -> void:
@@ -176,7 +178,7 @@ func _reload_items() -> void:
 					var button = ui_inventory_item.get_button()
 					button.connect("mouse_entered", Callable(self, "_on_button_item_mouse_entered").bind(ui_inventory_item))
 					button.connect("mouse_exited", Callable(self, "_on_button_item_mouse_exited").bind(ui_inventory_item))
-					button.connect("pressed", Callable(self, "on_button_item_mouse_pressed"))
+					button.connect("pressed", Callable(self, "_on_button_item_mouse_pressed").bind(ui_inventory_item))
 					
 			
 			_category_displays_to_pages[category_display] = starting_page + 1
@@ -295,11 +297,15 @@ func _on_button_category_mouse_exited(ui_inventory_category : Node) -> void:
 func _on_timer_category_name_timeout():
 	_show_category_display_label(_current_active_ui_inventory_category)
 	
+func _on_button_item_mouse_pressed(ui_inventory_item : Node) -> void:
+	if _is_scrolling: return
+	ui_inventory_item.highlight()
+	_context_menu_container.set_visible(true)
 	
 func _on_button_item_mouse_entered(ui_inventory_item : Node) -> void:
 	if _is_scrolling: return
 	ui_inventory_item.select()
-	#_show_item_info(ui_inventory_item.get_item())
+	_show_item_info(ui_inventory_item.get_item())
 
 func _on_button_item_mouse_exited(ui_inventory_item : Node) -> void:
 	if _is_scrolling: return
@@ -311,3 +317,47 @@ func _on_button_item_mouse_exited(ui_inventory_item : Node) -> void:
 func _show_item_info(item : EntityItem) -> void:
 	_ui_item_info.set_item(item)
 	_ui_item_info.set_visible(true)
+func _setup_context_menu() -> void:
+	var middle_idx = int(ceil(_grid_categories.get_child_count() / 2))
+	var middle_category = _grid_categories.get_children()[middle_idx]
+	var x = middle_category.get_global_position().x + (middle_category.get_size().x / 2) - (_context_menu.get_size().x / 2)
+	_context_menu.set_deferred("rect_global_position", Vector2(x, _context_menu.get_global_position().y))
+	_context_menu.get_button_cancel().connect("pressed",Callable( self, "_on_context_menu_button_cancel_pressed"))
+#	if not _context_menu.get_button_equip().is_connected("pressed",Callable( self, "_on_context_menu_button_equip_pressed")):
+#		_context_menu.get_button_equip().connect("pressed",Callable( self,"_on_context_menu_button_equip_pressed"))
+#		_context_menu.get_button_cancel().connect("pressed",Callable( self, "_on_context_menu_button_cancel_pressed"))
+#
+	
+func _open_context_menu(ui_inventory_item : Node) -> void:
+	_context_menu.set_ui_inventory_item(ui_inventory_item)
+	_context_menu_container.set_visible(true)
+
+
+func _on_context_menu_button_cancel_pressed() -> void:
+	_context_menu_container.set_visible(false)
+	#_context_menu_close()
+	
+	
+func _on_context_menu_button_equip_pressed() -> void:
+	if _context_menu.get_ui_inventory_item():
+		var item = _context_menu.get_ui_inventory_item().get_item()
+		
+		if GameState.player_check_is_item_equipped(item):
+			GameState.player_unequip_item(item)
+		else:
+			GameState.player_equip_item(item)
+	
+	_context_menu_close()
+	
+	
+func _context_menu_close() -> void:
+	_context_menu_container.set_visible(false)
+	
+	if _context_menu.get_ui_inventory_item():
+		_context_menu.get_ui_inventory_item().dehighlight()
+		_context_menu.set_ui_inventory_item(null)	
+	
+	
+func _on_item_acquired(item : EntityItem) -> void:
+	_reload()
+	
