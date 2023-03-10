@@ -12,6 +12,6 @@ texture_icon = ExtResource("2_vvnx7")
 attack_power = 0
 defense_value = 756
 price = 50000.0
-special_trait = "Arcane Defense 19%"
+special_trait = "19%+ Arcane Defense "
 effect = "500+ Inteligence"
 description = "Royal Set Very Unique"

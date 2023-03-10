@@ -6,12 +6,12 @@
 [resource]
 resource_name = "Potion"
 script = ExtResource("1_iugr5")
-category_type = 3
+category_type = 8
 name = "Potion"
 texture_icon = ExtResource("2_3jrcx")
 attack_power = 0
 defense_value = 0
 price = 0.0
-special_trait = "65 Damage"
+special_trait = "65- Damage"
 effect = "Poison Effect 9 seconds"
 description = "You will die if you drink this"

@@ -46,13 +46,16 @@ var _current_active_ui_inventory_category : Control
 @onready var _ui_item_info := $HBoxMain/ControlInfoColumn/UIItemInfo
 @onready var _context_menu_container := $UIContextMenuContainer
 @onready var _context_menu := $UIContextMenuContainer/UIContextMenu
+#@export var menu: NodePath
 
+#@onready var _context_menu = get_node(menu)
 # To keep track of item highlights with mouse hover
 var _current_ui_inventory_item_selected : Node
 
 
 func _ready():
 	_context_menu_container.set_visible(false)
+	print(_context_menu)
 	_scroll_animation = _animation_player.get_animation(ScrollAnimationName)
 	_reload()
 	
@@ -297,6 +300,7 @@ func _on_button_category_mouse_exited(ui_inventory_category : Node) -> void:
 func _on_timer_category_name_timeout():
 	_show_category_display_label(_current_active_ui_inventory_category)
 	
+	
 func _on_button_item_mouse_pressed(ui_inventory_item : Node) -> void:
 	if _is_scrolling: return
 	ui_inventory_item.highlight()
@@ -310,22 +314,26 @@ func _on_button_item_mouse_entered(ui_inventory_item : Node) -> void:
 func _on_button_item_mouse_exited(ui_inventory_item : Node) -> void:
 	if _is_scrolling: return
 
-#	if _context_menu.get_ui_inventory_item() and _context_menu.get_ui_inventory_item() == ui_inventory_item:
-#		return
+	if _context_menu.get_ui_inventory_item() and _context_menu.get_ui_inventory_item() == ui_inventory_item:
+		return
 
 	ui_inventory_item.deselect()
+	
+	
 func _show_item_info(item : EntityItem) -> void:
 	_ui_item_info.set_item(item)
 	_ui_item_info.set_visible(true)
+	
+	
 func _setup_context_menu() -> void:
 	var middle_idx = int(ceil(_grid_categories.get_child_count() / 2))
 	var middle_category = _grid_categories.get_children()[middle_idx]
 	var x = middle_category.get_global_position().x + (middle_category.get_size().x / 2) - (_context_menu.get_size().x / 2)
 	_context_menu.set_deferred("rect_global_position", Vector2(x, _context_menu.get_global_position().y))
-	_context_menu.get_button_cancel().connect("pressed",Callable( self, "_on_context_menu_button_cancel_pressed"))
-#	if not _context_menu.get_button_equip().is_connected("pressed",Callable( self, "_on_context_menu_button_equip_pressed")):
-#		_context_menu.get_button_equip().connect("pressed",Callable( self,"_on_context_menu_button_equip_pressed"))
-#		_context_menu.get_button_cancel().connect("pressed",Callable( self, "_on_context_menu_button_cancel_pressed"))
+
+	if not _context_menu.get_button_equip().is_connected("pressed",Callable( self, "_on_context_menu_button_equip_pressed")):
+		_context_menu.get_button_equip().connect("pressed",Callable( self,"_on_context_menu_button_equip_pressed"))
+		_context_menu.get_button_cancel().connect("pressed",Callable( self, "_on_context_menu_button_cancel_pressed"))
 #
 	
 func _open_context_menu(ui_inventory_item : Node) -> void:
@@ -347,7 +355,7 @@ func _on_context_menu_button_equip_pressed() -> void:
 		else:
 			GameState.player_equip_item(item)
 	
-	_context_menu_close()
+	#_context_menu_close()
 	
 	
 func _context_menu_close() -> void:
@@ -355,7 +363,7 @@ func _context_menu_close() -> void:
 	
 	if _context_menu.get_ui_inventory_item():
 		_context_menu.get_ui_inventory_item().dehighlight()
-		_context_menu.set_ui_inventory_item(null)	
+		_context_menu.set_ui_inventory_item(null)
 	
 	
 func _on_item_acquired(item : EntityItem) -> void:

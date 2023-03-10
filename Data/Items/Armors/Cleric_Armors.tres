@@ -12,6 +12,6 @@ texture_icon = ExtResource("2_omqgv")
 attack_power = 0
 defense_value = 500
 price = 15000.0
-special_trait = "Healing 12%"
+special_trait = "12%+ Healing "
 effect = "2000+ Inteligence "
 description = "Cleric Set Very Unique"

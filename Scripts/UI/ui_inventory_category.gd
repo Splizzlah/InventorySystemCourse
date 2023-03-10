@@ -8,12 +8,6 @@ extends Control
 var category: EntityItemCategoryDisplay: get = get_category, set = set_category
 
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
 func set_category(value : EntityItemCategoryDisplay) -> void:
 	category = value
 	_button.set_texture_normal(category.texture_icon)
@@ -26,13 +20,19 @@ func get_category() -> EntityItemCategoryDisplay:
 func get_button() -> Node:
 	return _button
 
+
+
 func highlight(force : bool = false) -> void:
 	if force or is_active:
 		set_modulate(item_active_modulate_color)
 
+
+
 func dehighlight(force : bool = false) -> void:
 	if force or not is_active:
 		set_modulate(item_inactive_modulate_color)
+		
+		
 		
 func set_active(active : bool = true) -> void:
 	is_active = active

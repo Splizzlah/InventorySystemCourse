@@ -4,7 +4,7 @@ class_name FileUtils
 
 static func get_file_names_from_path(path, extension := "all") -> Array:
 	var contents : = []
-	var dir = DirAccess.open("res://Data/ItemCategoryDisplays/")
+	var dir = DirAccess.open(GameState.ItemCategoryDisplaysPath)
 	
 	if dir.open(path) != null:
 		
@@ -17,6 +17,7 @@ static func get_file_names_from_path(path, extension := "all") -> Array:
 	else:
 		print('error occured when trying to access the path.')
 	return contents
+	
 static func load_resources_from_path(path) -> Array:
 	var resources := []
 	
